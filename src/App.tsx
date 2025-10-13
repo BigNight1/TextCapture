@@ -63,7 +63,12 @@ function App() {
       setText(data.text);
     } catch (err) {
       console.error(err);
-      alert("Error en OCR: " + (err as Error).message);
+      const errorMessage = (err as Error).message;
+      if (errorMessage.includes('fetch')) {
+        alert("Error de conexión. Verifica tu conexión a internet y recarga la página.");
+      } else {
+        alert("Error en OCR: " + errorMessage);
+      }
     } finally {
       setWorking(false);
     }
