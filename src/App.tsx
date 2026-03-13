@@ -54,6 +54,9 @@ function App() {
     
     try {
       const { data } = await recognize(file, 'spa+eng', {
+        langPath: '/tessdata',
+        workerPath: 'https://cdn.jsdelivr.net/npm/tesseract.js@6/dist/worker.min.js',
+        corePath: 'https://cdn.jsdelivr.net/npm/tesseract.js-core@6/tesseract-core-simd-lstm.wasm.js',
         logger: m => {
           if (m.status === "recognizing text" && m.progress) {
             setProgress(Math.round(m.progress * 100));
